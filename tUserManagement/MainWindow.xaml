@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:tUserManagement"
         mc:Ignorable="d"
-        Title="MainWindow" WindowStartupLocation="CenterScreen" Height="350" Width="525">
+        Title="MainWindow" WindowStartupLocation="CenterScreen" Height="350" Width="525" Loaded="Window_Loaded">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="20" />
@@ -20,14 +20,14 @@
                 <MenuItem Header="Close"/>
             </MenuItem>
             <MenuItem Header="Edit">
-                <MenuItem Header="Add"/>
-                <MenuItem Header="Edit"/>
+                <MenuItem x:Name="miAddUser" Header="Add" Click="miAddUser_Click"/>
+                <MenuItem x:Name="miEditUser" Header="Edit"/>
             </MenuItem>
         </Menu>
 
-        <DataGrid x:Name="dgUsers" Grid.Row="2" AutoGenerateColumns="False" Padding="10, 10, 10, 10">
+        <DataGrid x:Name="dgUsers" Grid.Row="2" MouseDoubleClick="dgUsers_MouseDoubleClick" IsReadOnly="True" RowHeaderWidth="0" AutoGenerateColumns="False" Padding="10, 10, 10, 10">
             <DataGrid.Columns>
-                <DataGridTextColumn Header="ID" Binding="{Binding Path=ID}" />
+                <DataGridTextColumn Visibility="Hidden" Header="ID" Binding="{Binding Path=Id}" />
                 <DataGridTextColumn Header="Name" Binding="{Binding Path=Name}"/>
                 <DataGridTextColumn Header="Age" Binding="{Binding Path=Age}"/>
                 <DataGridTextColumn Header="Email" Binding="{Binding Path=Email}"/>

@@ -13,6 +13,6 @@ namespace UserManagementLibrary
         public UserManagementContext(string dbconnect) : base(dbconnect)
         { }
 
-        public DbSet<User> users { set; get; }
+        public DbSet<User> Users { set; get; }
     }
 }
