@@ -22,51 +22,54 @@ namespace tUserManagement
     /// </summary>
     public partial class MainWindow : Window
     {
-        private static string dbName = "CodeFirstDB";
-        public static UserManagementContext dbContext { private set; get; }
+        private static string dbName = "CodeFirstDB"; //db connection string
+        public static UserManagementContext dbContext { private set; get; } //db context
 
         public MainWindow()
         {
             InitializeComponent();
 
-            dbContext = new UserManagementContext(dbName);
+            dbContext = new UserManagementContext(dbName); //connect to db
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            LoadDataFromDB();
+            LoadDataFromDB(); //fill datagrid with users information
         }
 
+        //load users information from database
         private void LoadDataFromDB()
         {
-            if (!ReferenceEquals(dbContext, null))
+            if (!ReferenceEquals(dbContext, null)) //if db connection established
             {
-                dbContext.Users.Load();
-                dgUsers.ItemsSource = dbContext.Users.Local;
+                dbContext.Users.Load(); //load info from db
+                dgUsers.ItemsSource = dbContext.Users.Local; //connect datagrid with db
             }
         }
 
+        //if menu item - Add clicked
         private void miAddUser_Click(object sender, RoutedEventArgs e)
         {
-            var addUserWindow = new AddEditUserWindow();
-            if (addUserWindow.ShowDialog() == true)
+            var addUserWindow = new AddEditUserWindow(); 
+            if (addUserWindow.ShowDialog() == true) //open AddEditUserWindow (add mode)
             {
-                dgUsers.Items.Refresh();
+                dgUsers.Items.Refresh(); //update datagrid 
             }
         }
 
+        //if double clicked on datagrid
         private void dgUsers_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
-            var selectedUser = dgUsers.SelectedItem as User;
+            var selectedUser = dgUsers.SelectedItem as User; //get selected row
 
             if (!ReferenceEquals(selectedUser, null))
             {
                 var editUserWindow = new AddEditUserWindow
                     (AddEditUserWindow.WindowOperation.Edit, selectedUser);
 
-                if (editUserWindow.ShowDialog() == true)
+                if (editUserWindow.ShowDialog() == true) //open AddEditUserWindow (edit mode)
                 {
-                    dgUsers.Items.Refresh();
+                    dgUsers.Items.Refresh();//update datagrid 
                 }
             }
         }
