@@ -5,8 +5,33 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:tUserManagement"
         mc:Ignorable="d"
-        Title="MainWindow" Height="350" Width="525">
+        Title="MainWindow" WindowStartupLocation="CenterScreen" Height="350" Width="525">
     <Grid>
-        
+        <Grid.RowDefinitions>
+            <RowDefinition Height="20" />
+            <RowDefinition Height="80*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+
+        <Menu>
+            <MenuItem Header="File">
+                <MenuItem Header="Close"/>
+            </MenuItem>
+            <MenuItem Header="Edit">
+                <MenuItem Header="Add"/>
+                <MenuItem Header="Edit"/>
+            </MenuItem>
+        </Menu>
+
+        <DataGrid x:Name="dgUsers" Grid.Row="2" AutoGenerateColumns="False" Padding="10, 10, 10, 10">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="ID" Binding="{Binding Path=ID}" />
+                <DataGridTextColumn Header="Name" Binding="{Binding Path=Name}"/>
+                <DataGridTextColumn Header="Age" Binding="{Binding Path=Age}"/>
+                <DataGridTextColumn Header="Email" Binding="{Binding Path=Email}"/>
+            </DataGrid.Columns>
+        </DataGrid>
     </Grid>
 </Window>
